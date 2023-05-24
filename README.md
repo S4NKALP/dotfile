@@ -1,10 +1,10 @@
 <div align="center">
   <p></p>
   <p><b><i> ~Bspwm dotfiles ~ </i></b></p>
-  <img src="https://img.shields.io/github/last-commit/S4NKALP/bspwm?color=%23c4a7e7&style=for-the-badge">
-  <img src="https://img.shields.io/github/repo-size/S4NKALP/bspwm?color=%23e0def4&style=for-the-badge">
-  <img src="https://img.shields.io/github/stars/S4NKALP/bspwm?color=%23ebbcba&style=for-the-badge">
-  <img src="https://img.shields.io/github/license/S4NKALP/bspwm?color=%239ccfd8&style=for-the-badge">
+  <img src="https://img.shields.io/github/last-commit/S4NKALP/dotfile?color=%23c4a7e7&style=for-the-badge">
+  <img src="https://img.shields.io/github/repo-size/S4NKALP/dotfile?color=%23e0def4&style=for-the-badge">
+  <img src="https://img.shields.io/github/stars/S4NKALP/dotfile?color=%23ebbcba&style=for-the-badge">
+  <img src="https://img.shields.io/github/license/S4NKALP/dotfile?color=%239ccfd8&style=for-the-badge">
 </div>
 
 
