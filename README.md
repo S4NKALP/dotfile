@@ -48,7 +48,8 @@
 - <code>super + c</code>  Kill a window/process.
 - <code>shift + alt + w</code> Changes randomly wallpaper.
 - <code>ctrl + shift + r</code> Restart bspwm.
-[Other Keybinds](https://github.com/S4NKALP/bspwm/wiki/Keyboard-Shortcuts.md)
+
+And more.. You need to look sxhkdrc file for more.
 
 
  ## 📦 Setup (Isn't Full Installation. Be careful about it.)
