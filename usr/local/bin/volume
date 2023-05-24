@@ -1,0 +1,50 @@
+#!/bin/bash
+
+icon_dir="$HOME/.config/bspwm/assets/icons"
+
+send_notification () {
+    volume=$(pamixer --get-volume)
+
+    if [[ "$volume" -lt "35" ]]; then
+        icon="$icon_dir/volume-down.svg"
+    elif [[ "$volume" -lt "70" ]]; then
+        icon="$icon_dir/volume-medium.svg"
+    else
+        icon="$icon_dir/volume-up.svg"
+    fi
+    notify-send -a "Volume" -u normal -i $icon -r 696969 "Volume : $volume"
+}
+
+docs () {
+	echo "
+Usage:	volume [Options]
+    
+Options:
+    up      -   Increase the volume
+    down    -   Decrease the volume
+    mute    -   Mute the volume
+	"
+}
+
+case $1 in
+    up)
+	    pamixer -i 5 --set-limit 100
+	    send_notification
+    ;;
+    down)
+	    pamixer -d 5 --set-limit 100
+	    send_notification
+    ;;
+    mute)
+	    pamixer -t
+        if [[ $(pamixer --get-mute) = "true" ]]; then
+            icon="$icon_dir/volume-mute.svg"
+            notify-send -a Volume -i $icon -r 699 "Volume : Muted"
+        else
+            send_notification
+        fi
+    ;;
+    *)
+        docs
+    ;;
+esac

@@ -1,0 +1,157 @@
+#!/bin/bash
+
+rofi_command="rofi -theme"
+time=$(date +%Y-%m-%d-%I-%M-%S)
+geometry=$(xrandr | head -n1 | cut -d',' -f2 | tr -d '[:blank:],current')
+dir="$(xdg-user-dir PICTURES)/Screenshots"
+file="Screenshot_${time}_${geometry}.png"
+timer_icon="$HOME/.config/bspwm/assets/icons/timer.svg"
+clipboard_icon="$HOME/.config/bspwm/assets/icons/clipboard.svg"
+
+[ ! -d $dir ] && mkdir -p $dir
+
+notify_user () {
+	notify-send -a Clipboard -i $clipboard_icon -u low -r 699 "Clipboard" "Screenshot saved on clipboard"
+	if [[ -e $dir/$file ]]; then
+		notify-send -a Screenshot -u low -i $dir/$file "Screenshot Saved"
+	else
+		notify-send -a Screenshot -u low -i ~/.config/bspwm/assets/icons/cancel.svg "Screenshot Deleted"
+	fi
+}
+
+countdown () {
+	for sec in `seq $1 -1 1`; do
+		notify-send -a Clock -u normal -t 1000 -i $timer_icon "Countdown" "Taking shot in : $sec"
+		sleep 1
+	done
+}
+
+magic () {
+	convert $file +antialias \
+	\( +clone  -alpha extract \
+    -draw 'fill black polygon 0,0 0,20 20,0 fill white circle 20,20 20,0' \
+    \( +clone -flip \) -compose Multiply -composite \
+    \( +clone -flop \) -compose Multiply -composite \
+  	\) -alpha off -compose CopyOpacity -composite $file
+
+	convert $file \
+	\( +clone -background black -shadow 69x20+0+10 \) \
+	+swap -background none -layers merge +repage $file
+}
+
+shot () {
+	cd $dir && maim -u -f png $file && magic && xclip -selection clipboard -t image/png -i $file
+	notify_user
+}
+
+shot_window () {
+	cd $dir && maim -u -f png -i `xdotool getactivewindow` $file && magic && xclip -selection clipboard -t image/png -i $file
+	notify_user
+}
+
+shot_area () {
+	cd $dir && maim -u -f png -s -b 2 -c 0.35,0.55,0.85,0.25 -l $file && magic && xclip -selection clipboard -t image/png -i $file
+	notify_user
+}
+
+shot_3 () {
+	countdown '3'
+	sleep 1 && cd $dir && maim -u -f png $file && magic && xclip -selection clipboard -t image/png -i $file
+	notify_user
+}
+
+shot_10 () {
+	countdown '10'
+	sleep 1 && cd $dir && maim -u -f png $file && magic && xclip -selection clipboard -t image/png -i $file
+  notify_user
+}
+
+shot_timer () {
+	confirm=$($HOME/.config/rofi/bin/confirm 'Set a number')
+	confirm_config="$HOME/.config/rofi/rasi/confirm.rasi"
+
+	if [[ $confirm =~ ^[0-9]+$ ]]; then
+		countdown $confirm
+		sleep 1 && cd $dir && maim -u -f png $file && magic && xclip -selection clipboard -t image/png -i $file
+		notify_user
+	else
+		$rofi_command $confirm_config -e "Please input a Number"
+    exit
+	fi
+}
+
+shot_rofi () {
+	config="$HOME/.config/rofi/rasi/screenutils.rasi"
+
+	screen=""
+	area=""
+	window=""
+	inthree=""
+	inten=""
+	timer=""
+
+	options="$screen\n$area\n$window\n$inthree\n$inten\n$timer"
+	chosen="$(echo -e "$options" | $rofi_command $config -p 'Take Screenshot' -dmenu -selected-row 0 -theme-str 'listview {lines: 6;}')"
+
+	case $chosen in
+  		$screen)
+			shot
+		;;
+  		$area)
+			shot_area
+		;;
+  		$window)
+			shot_window
+		;;
+  		$inthree)
+			shot_3
+		;;
+  		$inten)
+			shot_10
+		;;
+		$timer)
+			shot_timer
+		;;
+	esac
+}
+
+docs () {
+	echo "
+Usage:	screenshot [Options]
+
+Options:
+    now     -   Take screenshot of the desktop
+    window  -   Take screenshot of the focused window
+    area    -   Take screenshot of the selected area
+    in5     -   Take screenshot in 5 seconds
+    in10    -   Take screenshot in 10 seconds
+    timer   -   Set a custom timer
+	"
+}
+
+case $1 in
+    shot-screen)
+	    shot
+    ;;
+	shot-window)
+    	shot_window
+    ;;
+    shot-area)
+	    shot_area
+    ;;
+	shot-in3)
+	    shot_3
+    ;;
+    shot-in10)
+	    shot_10
+    ;;
+	shot-rofi)
+		shot_rofi
+    ;;
+    shot-timer)
+	    shot_timer
+    ;;
+    --help)
+		docs
+    ;;
+esac
