@@ -1,0 +1,97 @@
+
+* {
+    background-color:       @background;
+    text-color:             @foreground;
+    font:		    "JetBrains Mono Medium 10";
+background:			#1A1B26;
+foreground:			#D4BFFF;
+darker:				#161A1E;
+lighter:			#22262A;
+pink:				#FFDEDE;
+red:				#E5A3A1;
+green:				#B4E3AD;
+blue:				#A3CBE7;
+selected:			#73A3DE;
+background-alt:		        #D06FE8;
+urgent:				#E66D76;
+active:				#5EDEA3;
+off:				#E66D76;
+    BG:    #1E1D2Fff;
+    BGA:   #89DCEBff;
+    FG:    #D9E0EEff;
+    FGA:   #F28FADff;
+    BDR:   #96CDFBff;
+    SEL:   #1E1E2Eff;
+    UGT:   #F28FADff;
+    IMG:   #FAE3B0ff;
+    OFF:   #575268ff;
+    ON:    #ABE9B3ff;
+}
+
+/*****----- Main Window -----*****/
+window {
+    location:                    center;
+    anchor:                      center;
+    fullscreen:                  false;
+    width:                       320px;
+    x-offset:                    0px;
+    y-offset:                    0px;
+    padding:                     15px;
+    border:                      0px solid;
+    border-radius:               0px;
+    border-color:                @selected;
+    background-color:            @background;
+    cursor:                      "default";
+    children:                    [ "inputbar", "listview" ];
+}
+
+/*****----- Inputbar -----*****/
+inputbar {
+    enabled:                     true;
+    spacing:                     10px;
+    margin:                      0px;
+    padding:                     0px;
+    border:                      0px solid;
+    border-radius:               0px;
+    border-color:                @selected;
+    background-color:            transparent;
+    text-color:                  @foreground;
+    children:                    [ "textbox-prompt-colon", "prompt", "entry" ];
+}
+
+dummy {
+    expand:                      false;
+    width:                       10px;
+    background-color:            transparent;
+}
+textbox-prompt-colon {
+    enabled:                     true;
+    expand:                      false;
+    str:                         "";
+    padding:                     10px 13px;
+    border-radius:               0px;
+    background-color:            @urgent;
+    text-color:                  @background;
+}
+prompt {
+    enabled:                     true;
+    padding:                     10px;
+    border-radius:               0px;
+    background-color:            @selected;
+    text-color:                  @background;
+}
+entry {
+    enabled:                     true;
+    padding:                     10px 15px;
+    border-radius:               0px;
+    background-color:            @background-alt;
+    text-color:                  inherit;
+    cursor:                      text;
+    placeholder:                 "Confirm";
+    placeholder-color:           inherit;
+}
+
+/*****----- Listview -----*****/
+listview {
+    enabled:                     false;
+}

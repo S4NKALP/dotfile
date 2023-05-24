@@ -1,0 +1,8 @@
+#!/bin/bash
+
+rofi -dmenu \
+     -number \
+     -i \
+     -no-fixed-num-lines\
+     -p "Are You Sure? : "\
+     -theme $HOME/.config/bspwm/rofi/rasi/confirm.rasi

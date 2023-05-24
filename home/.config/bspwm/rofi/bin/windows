@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+ 
+
+DIR="$HOME/.config/bspwm/rofi"
+
+rofi -no-lazy-grab -show window -theme $DIR/rasi/window.rasi
