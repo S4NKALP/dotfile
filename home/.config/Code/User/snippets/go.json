@@ -1,0 +1,19 @@
+{
+	"Variable Declaration": {
+		"prefix": "vv",
+		"body": ":=",
+		"description": "Declare and initialize a variable"
+	},
+
+	"Format Print": {
+		"prefix": "fpl",
+		"body": "fmt.Println($1)",
+		"description": "Print a formatted string"
+	},
+
+	"Create a new function": {
+		"prefix": "fn",
+		"body": "func $1($2) $3 {\n\t$4\n}",
+		"description": "Create a new function"
+	}
+}

@@ -1,0 +1,109 @@
+{
+	// Place your snippets for javascriptreact here. Each snippet is defined under a snippet name and has a prefix, body and
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+
+	"Print to Console": {
+		"scope": "javascriptreact,javascript,typescript,typescriptreact",
+		"prefix": "l",
+		"body": "console.log(${1:object})$2;",
+		"description": "Displays a message in the console"
+	},
+
+	"Function": {
+		"scope": "javascriptreact,javascript,typescript,typescriptreact",
+		"prefix": "f",
+		"body": "function ${1:name}(${2:parameters}) {\n\t$0\n}",
+		"description": "Creates a function"
+	},
+	"Arrow Function": {
+		"scope": "javascriptreact,javascript,typescript,typescriptreact",
+		"prefix": "af",
+		"body": "(${1:parameters}) => {\n\t$0\n}",
+		"description": "Creates an arrow function"
+	},
+
+	"Form Submit Handler": {
+		"scope": "javascriptreact,javascript,typescript,typescriptreact",
+		"prefix": "fsh",
+		"body": ["const submitHandler = e => {e.preventDefault() $1}"],
+		"description": "Quickly create a simple form submit handler"
+	},
+
+	"Reduce to Hash": {
+		"scope": "javascriptreact,javascript,typescript,typescriptreact",
+		"prefix": "rth",
+		"body": ["const $1 = $2.reduce((acc,curr)=>{$3},{})"],
+		"description": "Quickly create a reduce hash table"
+	},
+	"Reduce to Array": {
+		"scope": "javascriptreact,javascript,typescript,typescriptreact",
+		"prefix": "rta",
+		"body": ["const $1 = $2.reduce((acc,curr)=>{$3},[])"],
+		"description": "Quickly create a reduce array"
+	},
+	"Use State": {
+		"scope": "javascriptreact,javascript,typescript,typescriptreact",
+		"prefix": "us",
+		"body": ["const [$1, set${1/(.*)/${1:/capitalize}/}] = useState($2);"],
+		"description": "Quickly set up useState"
+	},
+	"Use Effect": {
+		"scope": "javascriptreact,javascript,typescript,typescriptreact",
+		"prefix": "ue",
+		"body": ["useEffect(()=>{$1},[$2])"],
+		"description": "Quickly create a useEffect"
+	},
+
+	"Use Context": {
+		"scope": "javascriptreact,javascript,typescript,typescriptreact",
+		"prefix": "uc",
+		"body": ["const $1 = useContext($2)"],
+		"description": "Quickly create a useContext"
+	},
+	"PHP Tags": {
+		"scope": "html,php",
+		"prefix": "ptags",
+		"body": ["<?php $1 ?>"]
+	},
+	"PHP Echo Tags": {
+		"scope": "html,php,blade",
+		"prefix": "ptecho",
+		"body": ["<?= $1; ?>"]
+	},
+	"PHP Public Function": {
+		"scope": "php",
+		"prefix": "pub",
+		"body": ["public function $1($2) {$3}"]
+	},
+	"PHP protected property": {
+		"scope": "php",
+		"prefix": "pp",
+		"body": ["protected $1"]
+	},
+	"PHP Public Static Function": {
+		"scope": "php,blade",
+		"prefix": "psf",
+		"body": ["public static function $1($2) {$3}"]
+	},
+	"PHP Var Dump": {
+		"scope": "php,blade",
+		"prefix": "vd",
+		"body": ["var_dump($1)"]
+	},
+	"Rust PrintLn": {
+		"scope": "rust",
+		"prefix": "pl",
+		"body": ["println!($1)"]
+	}
+}
