@@ -1,0 +1,164 @@
+#!/bin/bash
+
+cache="$HOME/.cache/eww/weather"
+cache_status="$cache/status"
+cache_temperature="$cache/temperature"
+cache_gradient_1="$cache/gradient_1"
+cache_gradient_2="$cache/gradient_2"
+cache_icon="$cache/icon"
+cache_city="$cache/city"
+cache_country="$cache/country"
+
+[ ! -d $cache ] && mkdir $cache
+
+key="1f6e449790b8cf73a3cab8d5715483f8"
+id="6941099"
+unit="metric"	# Available options : 'metric' or 'imperial'
+
+data () {
+	weather=`curl -sf "http://api.openweathermap.org/data/2.5/weather?APPID=$key&id=$id&units=$unit"`
+
+	if [ ! -z "$weather" ]; then
+		temperature=$(echo "$weather" | jq ".main.temp" | cut -d "." -f 1)
+		city=$(echo "$weather" | jq -r ".name" | head -1)
+		country=$(echo "$weather" | jq -r ".sys.country" | head -1)
+		icon_code=$(echo "$weather" | jq -r ".weather[].icon" | head -1)
+		description=$(echo "$weather" | jq -r ".weather[].description" | head -1 | sed -e "s/\b\(.\)/\u\1/g")
+
+		if [ "$icon_code" == "50d"  ]; then
+			icon="󰖐"
+			gradient_1="#ece3b1"
+			gradient_2="#c9d4ff"
+		elif [ "$icon_code" == "50n"  ]; then
+			icon="󰖐"
+            gradient_1="#ceace8"
+			gradient_2="#c9d4ff"
+		elif [ "$icon_code" == "01d"  ]; then
+			icon="󰖙"
+			gradient_1="#ece3b1"
+			gradient_2="#ece3b1"
+		elif [ "$icon_code" == "01n"  ]; then
+			icon=""
+			gradient_1="#ceace8"
+			gradient_2="#ceace8"
+		elif [ "$icon_code" == "02d"  ]; then
+			icon=""
+			gradient_1="#ece3b1"
+			gradient_2="#a3cbe7"
+		elif [ "$icon_code" == "02n"  ]; then
+			icon=""
+			gradient_1="#ceace8"
+			gradient_2="#a3cbe7"
+		elif [ "$icon_code" == "03d"  ]; then
+			icon=""
+			gradient_1="#ece3b1"
+			gradient_2="#a3cbe7"
+		elif [ "$icon_code" == "03n"  ]; then
+			icon=""
+			gradient_1="#ceace8"
+			gradient_2="#a3cbe7"
+		elif [ "$icon_code" == "04d"  ]; then
+			icon=""
+			gradient_1="#a3cbe7"
+			gradient_2="#ece3b1"
+		elif [ "$icon_code" == "04n"  ]; then
+			icon=""
+			gradient_1="#a3cbe7"
+			gradient_2="#ceace8"
+		elif [ "$icon_code" == "09d"  ]; then
+			icon=""
+			gradient_1="#b4e3ad"
+			gradient_2="#ece3b1"
+		elif [ "$icon_code" == "09n"  ]; then
+			icon=""
+			gradient_1="#b4e3ad"
+			gradient_2="#ceace8"
+		elif [ "$icon_code" == "10d"  ]; then
+			icon=""
+			gradient_1="#ffdede"
+			gradient_2="#ece3b1"
+		elif [ "$icon_code" == "10n"  ]; then
+			icon=""
+			gradient_1="#ffdede"
+			gradient_2="#ceace8"
+		elif [ "$icon_code" == "11d"  ]; then
+			icon=""
+			gradient_1="#e5a3a1"
+			gradient_2="#ece3b1"
+		elif [ "$icon_code" == "11n"  ]; then
+			icon=""
+			gradient_1="#e5a3a1"
+			gradient_2="#ceace8"
+		elif [ "$icon_code" == "13d"  ]; then
+			icon=""
+			gradient_1="#c9d4ff"
+			gradient_2="#c9d4ff"
+		elif [ "$icon_code" == "13n"  ]; then
+			icon=""
+			gradient_1="#c9d4ff"
+			gradient_2="#c9d4ff"
+		elif [ "$icon_code" == "40d"  ]; then
+			icon="煮"
+			gradient_1="#a3cbe7"
+			gradient_2="#a3cbe7"
+		elif [ "$icon_code" == "40n"  ]; then
+			icon="煮"
+			gradient_1="#a3cbe7"
+			gradient_2="#a3cbe7"
+		else
+			icon=""
+			gradient_1="#b4e3ad"
+			gradient_2="#a3cbe7"
+		fi
+
+		echo "$icon" >  $cache_icon
+		echo "$city" >  $cache_city
+		echo "$country" >  $cache_country
+		echo "$description" > $cache_status
+		echo "$temperature""°C" > $cache_temperature
+		echo "$gradient_1" > $cache_gradient_1
+		echo "$gradient_2" > $cache_gradient_2
+	else
+		echo "-" > $cache_city
+		echo "-" > $cache_country
+		echo "Weather Unavailable" > $cache_status
+		echo "" > $cache_icon
+		echo "-" > $cache_temperature
+		echo "#b4e3ad" > $cache_gradient_1
+		echo "#a3cbe7" > $cache_gradient_2
+	fi
+}
+
+case $1 in
+    data)
+        data
+    ;;
+    icon)
+        data &
+		cat $cache_icon
+    ;;
+    color-1)
+        data &
+		cat $cache_gradient_1
+    ;;
+    color-2)
+        data & 
+		cat $cache_gradient_2
+    ;;
+    city)
+        data & 
+		cat $cache_city
+    ;;
+    country)
+        data & 
+		cat $cache_country
+    ;;
+    temperature)
+        data & 
+		cat $cache_temperature
+    ;;
+    status)
+        data &
+		cat $cache_status
+    ;;
+esac

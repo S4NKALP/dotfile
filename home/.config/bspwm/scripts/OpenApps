@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+#  ╔═╗╔═╗╔═╗╔═╗  ╦  ╔═╗╦ ╦╔╗╔╔═╗╦ ╦╔═╗╦═╗
+#  ╠═╣╠═╝╠═╝╚═╗  ║  ╠═╣║ ║║║║║  ╠═╣║╣ ╠╦╝
+#  ╩ ╩╩  ╩  ╚═╝  ╩═╝╩ ╩╚═╝╝╚╝╚═╝╩ ╩╚═╝╩╚═
+#	Script to control apps launcher
+
+
+# From here you can control your favorite applications for all themes.
+
+case "$1" in
+  --menu)
+    rofi -show drun \
+    -theme $HOME/.config/bspwm/rofi/rasi/launcher.rasi & disown;;
+  --terminal)
+    alacritty & disown;;
+  --floating)
+    alacritty --class FloaTerm,Alacritty & disown;;
+  --update)
+    alacritty --hold --class Updates,Alacritty -e Updates --update-system & disown;;
+  --checkupdates)
+    alacritty --hold --class Updating,Alacritty -e Updates --print-updates & disown;;
+  --ranger)
+    alacritty --class Ranger,Alacritty -e ranger & disown;;
+  --nvim)
+    alacritty -e nvim & disown;;
+  --music)
+    alacritty --class MusicPlayer,Alacritty -e ncmpcpp & disown;;
+  --fetch)
+    alacritty --hold --class Sysfetch,Alacritty -e ~/.local/bin/sysfetch & disown;;
+  --Player)
+    sh ~/.config/bspwm/widgets/MusicPlayer/Music_Player & disown;;
+  #Apps
+  --filemanager)
+	thunar & disown;;
+  --browser)
+	firefox & disown;;
+  --private_browser)
+	firefox --private-window & disown;;
+  --editor)
+	geany & disown;;
+  --telegram)
+	telegram & disown;;
+  --whats)
+	whatsapp-nativefier --disable-gpu & disown;;
+  --soundcontrol)
+    pavucontrol & disown;;
+  *)
+    echo "Option Not Valid";;
+esac

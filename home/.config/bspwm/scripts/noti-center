@@ -1,0 +1,28 @@
+#!/bin/bash
+
+[ ! -d $cache_dir ] && mkdir $cache_dir
+
+cache_dir="$HOME/.cache/eww"
+cache="$cache_dir/notification-center.eww"
+config="$HOME/.config/bspwm/widgets/notification-center"
+
+run () {
+	eww -c $config open notification-center
+	sleep 0
+	eww -c $config update notification-center=true
+}
+
+if [[ ! `pidof eww` ]]; then
+	eww -c $config daemon
+	sleep 0
+else
+	if [ ! -f $cache ]; then
+		touch $cache
+		run
+	else
+		eww -c $config update notification-center=false
+		sleep 0
+		eww -c $config close notification-center
+		rm $cache
+	fi
+fi
