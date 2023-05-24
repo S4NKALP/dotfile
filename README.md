@@ -72,7 +72,15 @@ cd bspwm
 ```
 - **After installing copy all files to respective location**
 - **If config didn't work then just give executive permission to all**
-- **Copy fonts file to ~/.local/share/**
+
+   <br>
+
+> You will need to install a few fonts.
+
+- **Cartograph CF:** [here](https://coding-fonts.css-tricks.com/fonts/cartograph-cf/)
+- **JetBrainsMono NF:** [here](https://github.com/ryanoasis/nerd-fonts)
+- **Font Awesome:** [here](https://fontawesome.com/download)
+- **Comic Mono :** [here](https://dtinth.github.io/comic-mono-font/)
 
    <br>
 
@@ -82,6 +90,12 @@ cd bspwm
  # Rebuilds the font cache
  $ fc-cache -fv
 ```
+
+   <br>
+
+> Lastly, log out from your current desktop session and log in into bspwm.
+
+   <br>
 
 ## Miscellaneous.
 
