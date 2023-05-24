@@ -1,0 +1,78 @@
+.line {
+    margin-left: -1px;
+}
+
+$bg: #101415;
+$bgSecondary: #131718;
+$bgSecondaryAlt: #151a1c;
+$fg: #C5C8C9;
+$fgDim: #9fa0a0;
+$watermelon: #ff4757;
+
+// Aliases
+$background: $bg;
+$backgroundSecondary: $bgSecondary;
+$backgroundSecondaryAlt: $bgSecondaryAlt;
+$foreground: $fg;
+$foregroundDim: $fgDim;
+
+$red: #ee6a70;
+$blue: #7ba5dd;
+$blue-desaturated: #6791c9;
+$magenta: #cb92f2;
+$green: #96d6b0;
+$yellow: #ffb29b;
+$accent: $blue;
+$javacafeMagenta: #d7c1ed;
+$javacafeBlue: #bac8ef;
+$javacafeCyan: #c7e5d6;
+
+* {
+    all: unset;
+}
+
+window {
+    color: $fg;
+    font-family: "Cartograph CF";
+}
+
+tooltip {
+    background-color: $bgSecondaryAlt;
+    border-radius: 4px;
+    font-family: "DM Sans";
+    font-size: 14px;
+}
+
+.lock-screen {
+    background-color: #0B0F10;
+    border-radius: 6px;
+
+    .lock-inner {
+        margin-top: 1em;
+        .lock-pfp {
+            background-image: url("../../assets/profile.png");
+            background-size: 100%;
+            border-radius: 100%;
+    
+            margin: 2rem 5rem 0rem;
+        }
+    
+        .lock-text {
+            margin: 2.5rem 1rem;
+            padding: 1rem;
+    
+            .lock-username {
+                color: $fg;
+                font-size: 20px;
+            }
+    
+            .lock-hostname {
+                color: #6e7071;
+                font-size: 16px;
+                font-style: italic;
+                font-family: "Cartograph CF";
+                // margin-bottom: -6rem;
+            }
+        }
+    }
+}

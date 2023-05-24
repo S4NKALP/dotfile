@@ -1,0 +1,213 @@
+/** Colors *******************************************/
+$bg: #232634;
+$bg-alt: #292c3c;
+$another-bg-alt: #313244;
+$fg: #cdd6f4;
+$fg-alt: #bac2de;
+$red: #e78284;
+$red-alt: #ed8796;
+$green: #a6d189;
+$green-alt: #a6da95;
+$yellow: #e5c890;
+$yellow-alt: #eed49f;
+$orange: #ef9f76;
+$orange-alt: #f5a97f;
+$blue: #8caaee;
+$blue-alt: #8aadf4;
+$purple: #ca9ee6;
+$purple-alt: #c6a0f6;
+$cyan: #99d1db;
+$cyan-alt: #91d7e3;
+$gray: #626880;
+$gray-alt: #5b6078;
+
+* {
+  all: unset;
+  transition: 200ms ease-out;
+}
+
+.control-center-tray {
+  background-color: $bg-alt;
+  margin: 0px 0px 0px 0px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px #141414;
+}
+
+.control-center-buttons {
+  background-color: $bg;
+  margin: 10px 10px 0px 10px;
+  border-radius: 20px;
+  padding: 15px 0px 15px 0px;
+}
+
+.net-status-on {
+  color: $bg;
+  background-color: $blue;
+  margin: 0px 19px 0px 19px;
+  padding: 0.5em 0em 0.5em 0em;
+  border-radius: 25px;
+  font-size: 24px;
+}
+
+.net-status-off {
+  color: $fg;
+  background-color: $gray;
+  margin: 0px 19px 0px 19px;
+  padding: 0.5em 0em 0.5em 0em;
+  border-radius: 25px;
+  font-size: 24px;
+}
+
+.volume-status-on {
+  color: $bg;
+  background-color: $green;
+  margin: 0px 19px 0px 19px;
+  padding: 0.5em 0em 0.5em 0em;
+  border-radius: 25px;
+  font-size: 24px;
+}
+
+.volume-status-off {
+  color: $fg;
+  background-color: $gray;
+  margin: 0px 19px 0px 19px;
+  padding: 0.5em 0em 0.5em 0em;
+  border-radius: 25px;
+  font-size: 24px;
+}
+
+.bluetooth-status-on {
+  color: $bg;
+  background-color: $purple;
+  margin: 0px 19px 0px 19px;
+  padding: 0.5em 0em 0.5em 0em;
+  border-radius: 25px;
+  font-size: 24px;
+}
+
+.bluetooth-status-off {
+  color: $fg;
+  background-color: $gray;
+  margin: 0px 19px 0px 19px;
+  padding: 0.5em 0em 0.5em 0em;
+  border-radius: 25px;
+  font-size: 24px;
+}
+
+.dunst-status-on {
+  font-family: "Feather";
+  color: $bg;
+  background-color: $red;
+  margin: 0px 19px 0px 19px;
+  padding: 0.5em 0em 0.5em 0em;
+  border-radius: 25px;
+  font-size: 24px;
+}
+
+.dunst-status-off {
+  font-family: "Feather";
+  color: $fg;
+  background-color:  $gray;
+  margin: 0px 19px 0px 19px;
+  padding: 0.5em 0em 0.5em 0em;
+  border-radius: 25px;
+  font-size: 24px;
+}
+
+.redshift-status-on {
+  color: $bg;
+  background-color: $yellow;
+  margin: 0px 19px 0px 19px;
+  padding: 0.5em 0em 0.5em 0em;
+  border-radius: 25px;
+  font-size: 24px;
+}
+
+.redshift-status-off {
+  color: $fg;
+  background-color: $gray;
+  margin: 0px 19px 0px 19px;
+  padding: 0.5em 0em 0.5em 0em;
+  border-radius: 25px;
+  font-size: 24px;
+}
+
+.volume-slider-stuff {
+  margin: 20px 20px 10px 20px;
+}
+
+.volume-slider-icon {
+  color: $yellow;
+  padding: 5px 15px 5px 15px;
+  margin-right: 30px;
+  font-size: 30px;
+  background-color: $gray;
+  border-radius: 50px;
+  box-shadow: 0px 0px 7px #141414;
+}
+
+
+.volume-slider trough {
+  border-radius: 20px;
+  background-color: $gray;
+  box-shadow: 0px 0px 7px #141414;
+}
+
+.volume-slider highlight {
+  padding: 0.5em;
+  border-radius: 20px;
+  background: linear-gradient(to left, $red, $red-alt);
+}
+
+.mic-slider-stuff {
+  margin: 10px 20px 10px 20px;
+}
+
+.mic-slider-icon {
+  color: $purple;
+  padding: 5px 15px 5px 15px;
+  margin-right: 30px;
+  font-size: 30px;
+  background-color: $gray;
+  border-radius: 50px;
+  box-shadow: 0px 0px 7px #141414;
+}
+
+
+.mic-slider trough {
+  border-radius: 20px;
+  background-color: $gray;
+  box-shadow: 0px 0px 7px #141414;
+}
+
+.mic-slider highlight {
+  padding: 0.5em;
+  border-radius: 20px;
+  background: linear-gradient(to left, $blue, $blue-alt);
+}
+
+.brightness-slider-stuff {
+  margin: 7px 20px 7px 20px;
+}
+
+.brightness-slider-icon {
+  color: $green;
+  padding: 5px 15px 5px 15px;
+  margin-right: 30px;
+  font-size: 30px;
+  background-color: $gray;
+  border-radius: 50px;
+  box-shadow: 0px 0px 7px #141414;
+}
+
+.brightness-slider trough {
+    border-radius: 20px;
+    background-color: $gray;
+    box-shadow: 0px 0px 7px #141414;
+ }
+  
+  .brightness-slider highlight {
+    padding: 0.5em;
+    border-radius: 20px;
+    background: linear-gradient(to left, $yellow, $yellow-alt);
+  }

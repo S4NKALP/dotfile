@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+#By: S4NKALP https://github.com/S4NKALP 
+
+FILE="$HOME/.cache/eww.music_player"
+ewwcfg="$HOME/.config/bspwm/widgets/MusicPlayer"
+EWW=`which eww`
+
+if [[ ! `pidof eww` ]]; then
+	${EWW} -c $HOME/.config/bspwm/widgets/MusicPlayer daemon &
+	sleep 1
+fi
+
+launch_eww() {
+	${EWW} --config "$ewwcfg" open music
+}
+
+
+## Launch or close widgets accordingly
+if [[ ! -f "$FILE" ]]; then
+	touch "$FILE"
+	launch_eww
+else
+	${EWW} --config "$ewwcfg" close music
+	rm "$FILE"
+fi
+

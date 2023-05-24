@@ -1,0 +1,86 @@
+#!/bin/bash
+
+LOCK_FILE="$HOME/.cache/eww-lock.lock"
+
+hide_unhide_windows() {
+    while bspc node any.hidden.window -g hidden=off; do false; done && while bspc node 'any.!hidden.window' -g hidden=on; do :; done
+}
+
+lock() {
+
+    # Wait for eww to finish load widget
+    sleep 0.5
+
+    i3lock -n -c 00000000 -t -e --pass-media-keys --pass-power-keys --pass-volume-keys --indicator \
+        --radius 64 --modif-size=9 --modif-pos="w/2:h/2-15" \
+        \
+        --time-str="" \
+        --time-pos="w/2:h/2+35" \
+        --time-color=e5e9f0 \
+        --time-size=14 \
+        --time-font="Sarasa Mono CL Nerd Font" \
+        \
+        --verif-text="" \
+        --verif-color=7ba5dd \
+        --verif-size=10 \
+        --verif-font="Sarasa Mono CL Nerd Font" \
+        \
+        --wrong-text="" \
+        --wrong-color=bf616a \
+        --wrong-size=10 \
+        --wrong-font="Sarasa Mono CL Nerd Font" \
+        \
+        --greeter-text="" \
+        --greeter-color=8fbcbb \
+        --greeter-size=60 \
+        --greeter-font="Sarasa Mono CL Nerd Font" \
+        --greeter-pos="w/2-22:h/2+285" \
+        \
+        --ring-color=81a1c1 \
+        --ringver-color=88c0d0 \
+        --ringwrong-color=bf616a \
+        --ring-width=5 \
+        \
+        --insidever-color=2e3440A8 \
+        --insidewrong-color=2e3440A8 \
+        --inside-color=2e344000 \
+        --ind-pos="w/2-150:h/2-45" \
+        \
+        --noinput-text="" \
+        \
+        --line-uses-inside --keyhl-color=7ba5dd --bshl-color=ee6a70 --separator-color=7ba5dd \
+        --pointer=default
+}
+
+run() {
+    $HOME/.config/bspwm/scripts/toggle-polybar
+    hide_unhide_windows
+    eww -c ~/.config/bspwm/widgets/lockscreen open lock-screen
+    lock
+}
+
+status=$(playerctl -p %any status || true)
+if [ "$status" == "Playing" ]; then
+	playerctl pause
+fi
+
+if [[ ! -f "$LOCK_FILE" ]]; then
+    if pgrep -x rofi; then
+        killall rofi
+    fi
+
+    touch "$LOCK_FILE"
+    run
+fi
+
+rm "$LOCK_FILE"
+
+# hsetroot -solid "#192022"
+killall eww
+sleep 0.2 && hide_unhide_windows
+$HOME/.config/bspwm/scripts/toggle-polybar
+
+status2=$(playerctl -p %any status || true)
+if [ "$status2" == "Paused" ]; then
+    playerctl play
+fi

@@ -1,0 +1,29 @@
+(defvar eww "/usr/bin/eww -c $HOME/.config/bspwm/widgets/lockscreen")
+
+
+(defpoll username :interval "12h"
+    "whoami")
+(defpoll hostname :interval "12h"
+    "hostname")
+
+(defwidget lock-screen [] 
+    (box :class "lock-screen" :orientation "h" :space-evenly "true"
+        (box :class "lock-inner" :orientation "v" :space-evenly "true"
+            (box :class "lock-pfp")
+            (box :class "lock-text" :orientation "v" :space-evenly "false"
+                (box :class "lock-username" "${username}")
+                (box :class "lock-hostname" "@${hostname}")
+            )
+        )
+    )
+)
+
+
+
+(defwindow lock-screen
+    :geometry (geometry :x "-150px"
+                        :y "5px" 
+                        :width "255px" 
+                        :height "270px"
+                        :anchor "center")
+    (lock-screen))

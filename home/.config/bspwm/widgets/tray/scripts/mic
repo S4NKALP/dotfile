@@ -1,0 +1,16 @@
+#!/bin/bash
+
+
+if [ "$1" = "set" ] && [ "$2" -gt 0 ] && [ "$2" -le 100 ]; then
+    volume="$2%"
+    amixer sset Capture "${volume}"
+    echo "Volume set to ${volume}"
+elif [ "$1" = "get" ]; then
+    (( mic_vol = $(amixer sget Capture | grep -oE '[0-9]+%' | tr -d '%') * 100 / 100 ))
+    echo $mic_vol
+elif [ "$1" = "percent" ] && [ "$2" -gt 0 ] && [ "$2" -le 100 ]; then
+    amixer sset Capture "${2}%"
+    echo "Volume set to ${2}%"
+else
+    echo "Usage: $0 [status|toggle|set|get]"
+fi
