@@ -160,7 +160,7 @@ You need to edit ~/.config/eww/scripts/weather_info & in slidebar/scripts/Weathe
 
 **`Old`**
 
-<img src="https://raw.githubusercontent.com/S4NKALP/dotfile/main/assets/old.png" width="600"/>
+<img src="https://raw.githubusercontent.com/S4NKALP/dotfile/main/assets/old.wpeg" width="600"/>
  </details>
 
 
