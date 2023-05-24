@@ -1,0 +1,19 @@
+#!/bin/sh
+
+echo ""
+echo "Installing Fonts.... "
+	    paru -S --noconfirm --needed ttf-sourcecodepro-nerd  mpdris2-git
+
+echo ""
+echo "Enabling MPD Service....."
+	    systemctl --user enable mpd.service
+	    systemctl --user start mpd.service
+
+echo ""
+echo "Installing SDDM and themes..."
+	    sudo pacman -S qt5-graphicaleffects qt5-quickcontrols2 qt5-svg sddm
+	    sudo systemctl enable sddm.service
+	    git clone https://github.com/shinas101/Anime-sddm-theme.git
+	    cd Anime-sddm-theme
+	    chmod +x ./install.sh
+	    sudo ./install.sh
