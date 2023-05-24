@@ -147,8 +147,8 @@
 ;; ** Windows ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
   (defwindow dashboard
-  :geometry (geometry :x "13%" 
-					  :y "70px"
+  :geometry (geometry :x "8.5px" 
+					  :y "65.5px"
 					  :anchor "left top")
 					  :stacking "fg"
 (ipanel))
