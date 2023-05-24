@@ -130,37 +130,37 @@ You need to edit ~/.config/eww/scripts/weather_info & in slidebar/scripts/Weathe
 
 **`Desktop`**
 
-<img src="https://raw.githubusercontent.com/S4NKALP/bspwm/main/assets/desktop.png" width="600"/>
+<img src="https://raw.githubusercontent.com/S4NKALP/dotfile/main/assets/desktop.png" width="600"/>
 
 **`Polybar`**
 
-<img src="https://raw.githubusercontent.com/S4NKALP/bspwm/main/assets/bar.png" width="800"/>
+<img src="https://raw.githubusercontent.com/S4NKALP/dotfile/main/assets/bar.png" width="800"/>
 
 **`Old Polybar`**
 
-<img src="https://raw.githubusercontent.com/S4NKALP/bspwm/main/assets/old_bar.png" width="800"/>
+<img src="https://raw.githubusercontent.com/S4NKALP/dotfile/main/assets/old_bar.png" width="800"/>
 
 **`Info-Panel`**
 
-<img src="https://raw.githubusercontent.com/S4NKALP/bspwm/main/assets/info-panel.png" width="600"/>
+<img src="https://raw.githubusercontent.com/S4NKALP/dotfile/main/assets/info-panel.png" width="600"/>
 
 **`Side-Bar`**
 
-<img src="https://raw.githubusercontent.com/S4NKALP/bspwm/main/assets/sidebar.png" width="600"/>
+<img src="https://raw.githubusercontent.com/S4NKALP/dotfile/main/assets/sidebar.png" width="600"/>
 
 **`MusicPlayer`**
 
-<img src="https://raw.githubusercontent.com/S4NKALP/bspwm/main/assets/musicplayer.png" width="600"/>
+<img src="https://raw.githubusercontent.com/S4NKALP/dotfile/main/assets/musicplayer.png" width="600"/>
 
 
 **`FireFox`**
 
-<img src="https://raw.githubusercontent.com/S4NKALP/bspwm/main/assets/firefox.png" width="600"/>
+<img src="https://raw.githubusercontent.com/S4NKALP/dotfile/main/assets/firefox.png" width="600"/>
 
 
 **`Old`**
 
-<img src="https://raw.githubusercontent.com/S4NKALP/bspwm/main/assets/old.png" width="600"/>
+<img src="https://raw.githubusercontent.com/S4NKALP/dotfile/main/assets/old.png" width="600"/>
  </details>
 
 
