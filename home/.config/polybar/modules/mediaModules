@@ -1,0 +1,52 @@
+
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/volume]
+type = internal/pulseaudio
+interval = 1.0
+
+format-volume = <ramp-volume> <label-volume>
+format-volume-background = ${colors.background}
+format-volume-padding = 0
+format-volume-foreground = ${colors.foreground}  
+format-muted = <label-muted>
+format-muted-prefix = " 婢 "
+format-muted-background = ${colors.background}
+format-muted-padding = 0
+format-muted-prefix-foreground = ${colors.foreground}
+
+
+label-muted = "Muted"
+label-muted-foreground = ${colors.foreground} 
+ramp-volume-0 = "  "
+ramp-volume-1 = " 奔"
+ramp-volume-2 = " 墳"
+
+click-right = OpenApps --soundcontrol
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/music-player]
+type = custom/text
+content = " " 
+content-foreground = ${colors.purple}
+content-background = ${colors.background}
+
+click-left = OpenApps --Player
+click-right = OpenApps --music
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/mic]
+type = custom/script
+exec = pipewire-microphone.sh
+tail = true
+click-left = pipewire-microphone.sh --toggle &
+scroll-up = pipewire-microphone.sh --increase &
+scroll-down = pipewire-microphone.sh --decrease &
+format-background = ${colors.background}
+format-foreground = ${colors.foreground}
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+

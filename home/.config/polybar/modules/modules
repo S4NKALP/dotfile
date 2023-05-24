@@ -1,0 +1,156 @@
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/backlight]
+type = internal/backlight
+card = ${system.sys_graphics_card}
+
+enable-scroll = true
+
+format = <ramp> <label>
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+label = "%percentage%% "
+
+ramp-0 = " 󰃞"
+ramp-1 = " 󰃞"
+ramp-2 = " 󰃞"
+ramp-3 = " 󰃟"
+ramp-4 = " 󰃟"
+ramp-5 = " 󰃟"
+ramp-6 = " 󰃟"
+ramp-7 = " 󰃠"
+ramp-8 = " 󰃠"
+ramp-9 = " 󰃠"
+
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/bspwm]
+type = internal/bspwm
+
+enable-click = true
+enable-scroll = false
+reverse-scroll = false
+pin-workspaces = true
+
+ 
+label-font = 4
+label-monitor = %name%
+format = <label-state> <label-mode>
+
+
+
+label-focused = %name%
+label-focused-background = ${colors.background}
+;label-focused-underline= #000000
+label-focused-padding = 1
+label-focused-foreground = #58baf1
+
+label-occupied = %name%
+label-occupied-padding = 1
+label-occupied-background = ${colors.background}
+label-occupied-foreground = ${colors.red}
+
+label-urgent = %name%
+label-urgent-background = ${colors.background}
+label-urgent-foreground = ${colors.yellow}
+label-urgent-padding = 1
+
+label-empty = %name%
+label-empty-foreground = ${colors.foreground}
+label-empty-padding = 1
+label-empty-background = ${colors.background}
+
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/date]
+type = internal/date
+
+interval = 1.0
+
+time = %I:%M %p - %d %b %y
+;;date-alt = " %a, %d %b %Y"
+
+format = <label>
+format-prefix = " "
+format-prefix-foreground = #8897F4
+format-background = ${colors.background}
+format-foreground = ${colors.foreground}
+
+label = "%time%"
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+[module/wlan]
+type = internal/network
+interface = ${system.sys_network_interface}
+interval = 1.0
+format-connected = <label-connected>
+format-disconnected = <label-disconnected>
+
+label-connected = " %essid% %netspeed%" 
+label-connected-foreground = ${colors.green} 
+label-connected-background = ${colors.background}
+
+label-disconnected = "%{A1:nmd &:}睊 OFFLINE%{A}"
+label-disconnected-foreground = ${colors.red} 
+label-disconnected-background = ${colors.background}
+
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+blacklist-1 = scroll lock
+#blacklist-0 = caps lock
+label-indicator-on-capslock =  CL
+label-foregroud = ${colors.blue}
+format-foreground = ${colors.blue}
+format-prefix = ""
+label-layout = " %icon%"
+label-layout-font = 1
+layout-icon-default = some-icon
+layout-icon-0 = us;US
+layout-icon-1 = np;NP
+label = %layout%
+format-padding = 0
+format-background = ${colors.background}
+
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/launcher]
+type = custom/text
+content = "󰣇"
+content-foreground = #8897F4
+click-left = OpenApps --menu
+click-right = sidebar
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/info-panel]
+type = custom/text
+
+content = "󰂚 "
+content-font = 5
+content-foreground = ${colors.amber}
+content-background = ${colors.background}
+content-padding = 0
+
+click-left = info-panel
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/setting]
+type = custom/text
+
+content = " 󰒓 "
+content-font = 5
+content-padding = 0
+content-foreground = ${colors.foreground}
+click-left = eww -c ~/.config/bspwm/widgets/tray open --toggle tray
+content-background = ${colors.background}
