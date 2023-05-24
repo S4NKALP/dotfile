@@ -4,7 +4,7 @@
 
 <div align="center">
     <p></p>
-    <a href="https://github.com/rxyhn/bspdots/stargazers">
+    <a href="https://github.com/S4NKALP/dotfile/stargazers">
         <img src="https://img.shields.io/github/stars/S4NKALP/dotfile?color=%23BB9AF7&labelColor=%231A1B26&style=for-the-badge">
     </a>
         <img src="https://img.shields.io/github/forks/S4NKALP/dotfile?color=%237AA2F7&labelColor=%231A1B26&style=for-the-badge">
