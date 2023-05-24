@@ -1,0 +1,226 @@
+################################################
+## 	 ██████ ▒██   ██▒ ██░ ██  ██ ▄█▀▓█████▄   ##
+##	▒██    ▒ ▒▒ █ █ ▒░▓██░ ██▒ ██▄█▒ ▒██▀ ██▌ ##
+##	░ ▓██▄   ░░  █   ░▒██▀▀██░▓███▄░ ░██   █▌ ##
+##	  ▒   ██▒ ░ █ █ ▒ ░▓█ ░██ ▓██ █▄ ░▓█▄   ▌ ##
+##	▒██████▒▒▒██▒ ▒██▒░▓█▒░██▓▒██▒ █▄░▒████▓  ##
+##	▒ ▒▓▒ ▒ ░▒▒ ░ ░▓ ░ ▒ ░░▒░▒▒ ▒▒ ▓▒ ▒▒▓  ▒  ##
+##	░ ░▒  ░ ░░░   ░▒ ░ ▒ ░▒░ ░░ ░▒ ▒░ ░ ▒  ▒  ##
+##	░  ░  ░   ░    ░   ░  ░░ ░░ ░░ ░  ░ ░  ░  ##
+##	      ░   ░    ░   ░  ░  ░░  ░      ░     ##
+##	                                    ░     ##
+################################################  By: S4NKALP https://github.com/S4NKALP 
+
+
+
+# Toggle right click context menu.
+~button3
+	  xqp 0 $(xdo id -N Bspwm -n root) && jgmenu_run 
+
+# Terminal 
+super + Return
+	OpenApps --terminal
+
+# Terminal (floating)
+super + shift + Return
+	OpenApps --floating
+
+
+# Scratchpad
+super + alt + o
+	tdrop -a -w 70% -h 35% -y 0 -x 15%  --class scratch alacritty --class=scratch
+
+# Rofi App Launcher
+alt + space
+	OpenApps --menu
+
+# HotKeys
+alt + F1
+	sxhkd-help 
+
+#Rofi Network Menu
+super + n
+	nmd
+
+# Window Switcher
+super + w
+	windows
+		
+#screenRecord
+super + shift + r
+	screenrecord capture-rofi
+
+#Emoji
+super + e
+	rofi -modi emoji -show emoji -theme "$HOME/.config/bspwm/rofi/rasi/emoji/emojimenu.rasi"
+
+# Power off, Reboot, Log out, Lockscreen, kill an app
+ctrl + shift + alt + {p,r,q,l,k}
+	{systemctl poweroff, systemctl reboot,bspc quit,lockscreen,xkill}
+
+# Launch Apps
+alt + {e,f,t,x,w,s}
+	{thunar, \
+	 firefox, \
+	 telegram-desktop, \
+	 firefox --private-window, \
+	 whatsapp-nativefier --disable-gpu, \
+	 env LD_PRELOAD=/usr/lib/spotify-adblock.so spotify --disable-gpu --no-zygote %U, \ }
+
+# Take a screenshot
+Print
+	screenshot shot-screen
+	
+# Take screenshot in 5 second
+alt + Print	
+	screenshot shot-in3
+
+# Take screenshot in 10 second
+shift + Print	
+	screenshot shot-in10
+
+# Take screenshot of active window
+ctrl + Print
+	screenshot shot-window
+
+# Take screenshot of area
+super + z
+	screenshot shot-area
+
+# Manage brightness
+XF86MonBrightness{Up,Down}
+    brightness {up,down}
+
+Manage volume
+XF86Audio{Raise,Lower}Volume
+    volume {up,down}
+
+XF86AudioMute
+   volume mute
+	
+# Music control
+XF86Audio{Next,Prev,Play,Stop}
+	mpc {next,prev,toggle,stop}
+
+# Close App
+super + {_,shift + }c
+	bspc node -{c,k}
+
+# Reload Keybindings
+super + Escape
+	pkill -USR1 -x sxhkd; dunstify -u low -i ~/.config/bspwm/assets/icons/reload.svg 'sxhkd' 'Reloaded successfully!'
+
+# kill window
+alt + F4
+    xkill
+
+# Quit/Restart bspwm
+ctrl + shift + {q,r}
+	bspc {quit,wm -r}
+	
+# rotate desktop
+super + r
+	bspc node @/ --rotate {90,-90}
+
+#Hide Winodw
+super + shift + i
+	winmask
+
+# Make split ratios equal
+super + equal
+	bspc node @/ --equalize
+
+# Make split ratios balanced
+super + minus
+	bspc node @/ --balance
+
+# swap the current node and the biggest node
+super + g
+	bspc node -s biggest
+
+# Fullscreen or Monocle
+super + f
+#	bspc desktop -l next
+    bspc node -t "~"fullscreen
+
+# Monocle
+super + shift + f
+	bspc desktop -l next    
+
+# Toggle beetwen floating & tiled
+super + space
+    bspc node -t "~"{floating,tiled}
+
+# Pseudo Tiled & tiled mode
+super + alt + space
+
+# set the node flags
+ctrl + alt {m,x,s,p,i}
+	bspc node -g {marked,locked,sticky,private,hidden}
+
+# focus the node in the given direction
+super + shift + {Left,Down,Up,Right}
+	bspc node -{f,s} {west,south,north,east}
+
+# focus the node for the given path jump
+super + alt + {p,b,comma,period}
+	bspc node -f @{parent,brother,first,second}
+
+# focus the next/previous window in the current desktop
+shift + Tab
+	bspc node -f {next,prev}.local.!hidden.window
+
+# Switch workspace
+shift + alt + {a,d}
+	bspc desktop -f {prev.local,next.local}
+
+# focus the last node/desktop
+super + {grave,Tab}
+	bspc {node,desktop} -f last
+
+# focus the older or newer node in the focus history
+super + {o,i}
+	bspc wm -h off; \
+	bspc node {older,newer} -f; \
+	bspc wm -h on
+
+# focus or send to the given desktop
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+# Focused desktop window gaps scroll
+shift + alt + {1,2}
+	bspc config -d focused window_gap $((`bspc config -d focused window_gap` {-,+} 5 ))
+
+# Global window gaps scroll
+ctrl + alt + {1,2}
+	bspc config window_gap $(( $(bspc config window_gap) {-,+} 5 ))
+
+# preselect the direction
+super + ctrl + {Left,Down,Up,Right}
+	bspc node -p {west,south,north,east}
+
+# preselect the ratio
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# cancel the preselection for the focused node
+Escape
+	bspc node -p cancel
+
+# cancel the preselection for the focused desktop
+Ctrl + Escape
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+   
+# expand a window by moving one of its side outward
+super + alt + {Right,Up,Down,Left}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# contract a window by moving one of its side inward
+super + alt + shift + {Right,Up,Down,Left}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# move a floating window
+super + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+

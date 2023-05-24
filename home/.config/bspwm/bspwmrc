@@ -1,0 +1,154 @@
+#!/usr/bin/env sh
+#  ╔╗ ╔═╗╔═╗╦ ╦╔╦╗  - o0xjack
+#  ╠╩╗╚═╗╠═╝║║║║║║  - https://github.com/S4NKALP/bspwm
+#  ╚═╝╚═╝╩  ╚╩╝╩ ╩  
+
+## Environments.
+
+export PATH="${PATH}:$HOME/.config/bspwm/scripts:$HOME/.config/bspwm/rofi/bin:$HOME/.local/bin"
+PATH="$HOME/.config/bspwm/scripts:$PATH"
+
+## Parse colors from "~/.Xresources" ---------------------------- #
+
+xrdb -override "${HOME}/.Xresources"
+
+xrdb_query()
+{
+    [ -n "$XRDB_QUERY" ] || XRDB_QUERY="$(xrdb -query)"
+
+    echo "$XRDB_QUERY" | while IFS=';' read -r STRING; do
+        [ "${1}" = "${STRING%%\	*}" ] || continue
+        echo "${STRING##*\	}"
+        break
+    done
+}
+
+getcolors()
+{
+    #FOREGROUND="$(xrdb_query '*.foreground:')"
+    BACKGROUND="$(xrdb_query '*.background:')"
+    BLACK="$(xrdb_query '*.color0:')"
+    #RED="$(xrdb_query '*.color1:')"
+    #GREEN="$(xrdb_query '*.color2:')"
+    #YELLOW="$(xrdb_query '*.color3:')"
+    #BLUE="$(xrdb_query '*.color4:')"
+    #MAGENTA="$(xrdb_query '*.color5:')"
+    #CYAN="$(xrdb_query '*.color6:')"
+    #WHITE="$(xrdb_query '*.color7:')"
+}
+
+getcolors
+
+# Solve java apps issues (e.g. JetBrains IDEs like PyCharm, CLion, etc). #
+export _JAVA_AWT_WM_NONREPARENTING=1 
+
+# Set system vars for polybar
+. SetSysVars
+
+## Configurations ----------------------------------------------- #
+# ----- set En & Np for keyboard ----- #
+setxkbmap -layout us,np # change 'us,np' for your own uses #
+setxkbmap -option 'grp:ctrl_space_toggle'
+
+
+workspaces()
+{
+    for MONITOR in $(bspc query -M); do
+        name=$((name+1))
+        bspc monitor ${MONITOR} -n "$name" -d '一' '二' '三' '四' '五' '六' #'七' '八'  '九' '十'
+        #bspc monitor ${MONITOR} -n "$name" -d '1' '2' '3' '4' '5' '6'
+	(( name++ ))
+    done
+}
+
+workspaces
+
+bspc config external_rules_command $HOME/.config/bspwm/scripts/ExternalRules
+
+bspc rule -a scratch sticky=on state=floating focus=on
+
+bspc config top_padding 59
+bspc config bottom_padding 2
+bspc config left_padding 2
+bspc config right_padding 2
+bspc config border_width 0
+bspc config window_gap 6
+bspc config split_ratio 0.51
+bspc config borderless_monocle false
+bspc config gapless_monocle false
+
+bspc config normal_border_color "#C574DD"
+bspc config active_border_color "#C574DD"
+bspc config focused_border_color "#8897F4"
+bspc config presel_feedback_color "#FF4971"
+
+bspc config focus_follows_pointer         true
+bspc config pointer_follows_focus         false
+bspc config pointer_motion_interval       5
+bspc config pointer_modifier              mod4 
+bspc config pointer_action1               move 
+bspc config pointer_action2               resize_side 
+bspc config pointer_action3               resize_corner
+bspc wm --adopt-orphans
+
+#  remove all rules first  #
+bspc rule -r *:*
+
+## Startup programs --------------------------------------------- #
+
+# Terminate already running polybar, eww, picom, sxhkd and dunst instances
+processes=("picom" "polybar" "eww" "sxhkd" "dunst")
+
+for process in "${processes[@]}"; do
+  if pidof -q "$process"; then
+    pkill -x "$process" > /dev/null; sleep 0.1
+  fi
+done
+
+# Run polybar
+#$HOME/.config/bspwm/polybar/launch.sh &
+polybar &
+# Launch picom // If you have old hardware or encounter problems 
+# uncomment the picom "--legacy-backends" line and comment the current one.
+picom --config "$HOME"/.config/bspwm/picom.conf &
+#picom --legacy-backends --config "$HOME"/.config/bspwm/picom.conf &
+
+
+# ----- Enable power management ----- #
+xfce4-power-manager &
+
+# Run xsettingsd daemon.
+xsettingsd &
+
+# Launch polkit
+pgrep -x polkit-gnome-au > /dev/null || /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
+# Reload sxhkd daemon
+sxhkd -c "$HOME"/.config/bspwm/sxhkdrc &
+
+# Fix cursor.
+xsetroot -cursor_name left_ptr
+
+# Start X wallpaper.
+feh -z --no-fehbg --bg-fill ~/.config/bspwm/assets/wall.webp
+
+# Run script that gives you a warm welcome cuz it feels good to not feel alone XD 
+sh "${HOME}/.local/bin/hello.sh"
+
+# Run mpd if doesn't started.
+ exec mpd &
+ exec mpdris2 &
+
+# Kill if already running
+killall -9 ksuperkey
+
+# Enable Super Keys For Menu
+ksuperkey -e 'Super_L=Alt_L|F1' &
+ksuperkey -e 'Super_R=Alt_L|F1' &
+
+# ----- enable num lock ----- #
+numlockx &
+
+# ----- Notification ----- #
+dunst -config "$HOME"/.config/dust/dunstrc &
+
