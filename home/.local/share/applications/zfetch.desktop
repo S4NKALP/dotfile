@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=SysFetch
+Icon=~/.local/share/applications/zombie.svg
+Terminal=false
+Exec=OpenApps --fetch
+#Exec=termite --hold -e zfetch
+
