@@ -15,6 +15,8 @@
   <b> ~ No lognger Updates on this because Nowadays I am using Hyprland WM ~ </b>
   </p>
 
+
+
 ## Info
 
 |Distro|[Arch](https://archlinux.org/)|
@@ -145,7 +147,6 @@ You need to edit ~/.config/eww/scripts/weather_info & in slidebar/scripts/Weathe
   - [gh0szkt](https://github.com/gh0stzk) 
   -  I forgot from where I took other code
    <br>
-
 
 <details>
 <summary><b>Screenshots</b></summary>
