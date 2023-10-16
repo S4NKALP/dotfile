@@ -12,7 +12,7 @@
 </div>
 
 <p align="center">
-  <b> ~ No lognger Updates on this because Nowadays I am using Hyprland WM ~ </b>
+  <b> ~ No lognger Updates on this.~ </b>
   </p>
 
 
