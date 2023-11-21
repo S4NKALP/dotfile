@@ -12,7 +12,7 @@
 </div>
 
 <p align="center">
-  <b> ~ No lognger Updates on this.~ </b>
+  <b> ~ No longer Updates on this.~ </b>
   </p>
 
 
